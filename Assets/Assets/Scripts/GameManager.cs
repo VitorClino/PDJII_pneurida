@@ -27,6 +27,8 @@ public class GameManager : MonoBehaviour
     private float nitroMax = 100;
     private float currentNitro = 0;
     private float buffNitroSpeed = .4f;
+    private bool isLowernitro = false;
+    private float timeLowerNitro;
     public float GetCurrentNitro { get { return currentNitro; } }
 
     [Header("Config Player")]
@@ -54,8 +56,14 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
-        InvokeRepeating("AddPoints", 0f, 0.5f);
+        InvokeRepeating("AddPoints", 0f, 0.1f);
         InvokeRepeating("AddSpeed", 0f, 1f);
+    }
+    private void FixedUpdate()
+    {
+        if (isLowernitro)
+            LowerNitro();
+
     }
     private void AddPoints()
     {
@@ -114,8 +122,13 @@ public class GameManager : MonoBehaviour
             SpeedVariate(buffNitroSpeed);
             StartCoroutine(DesligaNitro(BuffTime()));
             
+            
         }
 
+    }
+    public void LowerNitro()
+    {
+        currentNitro = Mathf.Lerp(currentNitro, 0, timeLowerNitro * Time.deltaTime);
     }
     private float BuffTime()
     {
@@ -129,10 +142,6 @@ public class GameManager : MonoBehaviour
         else if (currentNitro >= 90)
             return t + 4f;
         else return t;
-
-        
-
-
     }
     public void SpeedVariate(float a)
     {
@@ -141,9 +150,20 @@ public class GameManager : MonoBehaviour
     private IEnumerator DesligaNitro(float t)
     {
         Debug.Log($"Esperando {t} segundos");
-        yield return new WaitForSeconds(t); 
+        timeLowerNitro = t;
+        isLowernitro = true;
+        yield return new WaitForSeconds(t);
+        isLowernitro = false;
         SpeedVariate(-buffNitroSpeed);
-        currentNitro = 0;
         Debug.Log("nitro desligado");
     }
+
+    public void Derrota()
+    {
+        Time.timeScale = 0;
+        UIConfig.Instance.derrota.SetActive(true);
+
+    }
+
+    
 }

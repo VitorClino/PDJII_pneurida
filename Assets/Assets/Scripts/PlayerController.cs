@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
     private int lifeMAX = 5;
     private int life;
 
-    private float speed = 6;
+    private float speed = 15;
     private Rigidbody rb;
 
     private static Player _instance = null;
@@ -34,12 +34,7 @@ public class Player : MonoBehaviour
     {
         if (Time.timeScale != 0)
         {
-            Vector3 acellerometer = Input.acceleration;
-
-            Vector3 dir = new Vector3(acellerometer.x, 0f, 0f);
-            dir.Normalize();
-
-            rb.AddForce(dir * speed);
+            rb.velocity = new Vector3(Input.acceleration.x * speed, 0f, 0f);
         }
     }
 
@@ -48,6 +43,10 @@ public class Player : MonoBehaviour
         life -= damage;
         GameManager.Instance.SpeedVariate(-0.4f);
         Debug.Log("life = " + life);
+        if(life <= 0)
+        {
+            GameManager.Instance.Derrota();
+        }
     }
 
     public void Cure(int cure)

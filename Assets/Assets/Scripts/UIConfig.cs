@@ -10,6 +10,9 @@ public class UIConfig : MonoBehaviour
     public Image nitroBarFill;
     public Slider sliderNitro;
 
+    [Header("Geral")]
+    public GameObject derrota;
+
     private static UIConfig _instance;
     public static UIConfig Instance
     {
