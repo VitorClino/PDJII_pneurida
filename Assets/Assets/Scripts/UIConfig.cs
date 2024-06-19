@@ -3,15 +3,29 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UIConfig : MonoBehaviour
 {
     [Header("Nitro")]
     public Image nitroBarFill;
     public Slider sliderNitro;
+    private bool isNitro = false;
+    public bool IsNitro
+    {
+        set { IsNitro = value; }
+        get { return isNitro; }
+    }
+
 
     [Header("Geral")]
     public GameObject derrota;
+
+    [Header("Reward Config")]
+    public List<TMP_Text> rewardText = new List<TMP_Text>();
+
+    public GameObject[] rewardPanel = new GameObject[2];
+
 
     private static UIConfig _instance;
     public static UIConfig Instance
@@ -32,8 +46,7 @@ public class UIConfig : MonoBehaviour
     {
         _instance = this;
     }
-    public void Start()
-    {
+    public void Start() {
         InvokeRepeating("AtualizaSlider", 0f, 0.5f);
     }
 
@@ -49,7 +62,16 @@ public class UIConfig : MonoBehaviour
 
     public void AtualizaSlider()
     {
-        sliderNitro.value = GameManager.Instance.GetCurrentNitro;
+            
+            sliderNitro.value = GameManager.Instance.GetCurrentNitro;
+    }
+    public void RestartGame(string scene)
+    {
+        SceneManager.LoadScene(scene);
+    }
+    public void TrocaScene(string scene)
+    {
+        SceneManager.LoadScene(scene);
     }
 
 }

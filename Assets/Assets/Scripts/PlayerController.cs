@@ -41,7 +41,6 @@ public class Player : MonoBehaviour
     public void TakeDamage(int damage)
     {
         life -= damage;
-        GameManager.Instance.SpeedVariate(-0.4f);
         Debug.Log("life = " + life);
         if(life <= 0)
         {
