@@ -6,9 +6,11 @@ public class Player : MonoBehaviour
 {
     private int lifeMAX = 5;
     private int life;
-
+    public int Life { get { return life; } }
     private float speed = 15;
     private Rigidbody rb;
+
+    private float maxDir = 22f, maxEsq = -22f;
 
     private static Player _instance = null;
     public static Player Instance
@@ -34,7 +36,13 @@ public class Player : MonoBehaviour
     {
         if (Time.timeScale != 0)
         {
-            rb.velocity = new Vector3(Input.acceleration.x * speed, 0f, 0f);
+            float move = Input.acceleration.x * Time.deltaTime * speed;
+            Vector3 newPosition = transform.position + new Vector3(move,0,0);
+
+            newPosition.x = Mathf.Clamp(newPosition.x, maxEsq, maxDir);
+
+            transform.position = newPosition;
+            //rb.velocity = new Vector3(Input.acceleration.x * speed, 0f, 0f);
         }
     }
 
@@ -46,12 +54,14 @@ public class Player : MonoBehaviour
         {
             GameManager.Instance.Derrota();
         }
+        UIConfig.Instance.AtualizaVidaUI();
     }
 
     public void Cure(int cure)
     {
         if (life < lifeMAX)
             life += cure;
+        UIConfig.Instance.RecuperaVida();
         Debug.Log("life = " + life);
     }
 }

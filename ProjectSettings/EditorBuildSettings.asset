@@ -8,7 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Assets/Scenes/Pneurida.unity
     guid: c850ee8c3b14cc8459e7e186857cf567
-  - enabled: 1
+  - enabled: 0
     path: Assets/Assets/Scenes/Pneurida_Store.unity
     guid: 6554e0bc3d3e5774893632c36e611b37
   m_configObjects: {}

@@ -20,11 +20,9 @@ public class UIConfig : MonoBehaviour
 
     [Header("Geral")]
     public GameObject derrota;
-
-    [Header("Reward Config")]
-    public List<TMP_Text> rewardText = new List<TMP_Text>();
-
-    public GameObject[] rewardPanel = new GameObject[2];
+    public List<TMP_Text> txt_coins = new List<TMP_Text>();
+    public List<GameObject> UIvida = new List<GameObject>();
+    private int vida;
 
 
     private static UIConfig _instance;
@@ -45,6 +43,11 @@ public class UIConfig : MonoBehaviour
     public void Awake()
     {
         _instance = this;
+        vida = 0;
+        for(int i = 0; i < UIvida.Count; i++)
+        {
+            UIvida[i].gameObject.SetActive(true);
+        }
     }
     public void Start() {
         InvokeRepeating("AtualizaSlider", 0f, 0.5f);
@@ -59,19 +62,44 @@ public class UIConfig : MonoBehaviour
     {
         tx_point.text = GameManager.Instance.GetPoints.ToString();
     }
-
     public void AtualizaSlider()
     {
             
             sliderNitro.value = GameManager.Instance.GetCurrentNitro;
     }
-    public void RestartGame(string scene)
+    public void AtualizaCoins(int c)
     {
-        SceneManager.LoadScene(scene);
+        for (int i = 0; i < txt_coins.Count; i++)
+        {
+            txt_coins[i].text = c.ToString();
+        }
+    }
+    public void RestartGame()
+    {
+        SceneManager.LoadScene("Pneurida");
     }
     public void TrocaScene(string scene)
     {
         SceneManager.LoadScene(scene);
+    }
+    public void Pausarjogo()
+    {
+        Time.timeScale = 0;
+    }
+    public void Despausar()
+    {
+        Time.timeScale = 1;
+    }
+
+    public void AtualizaVidaUI()
+    {
+        UIvida[vida].gameObject.SetActive(false);
+        vida++;
+    }
+    public void RecuperaVida()
+    {
+        vida--;
+        UIvida[vida].gameObject.SetActive(true);
     }
 
 }

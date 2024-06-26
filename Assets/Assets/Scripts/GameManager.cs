@@ -6,16 +6,19 @@ using UnityEngine;
 // - Sistema de derrota caso saia da area;
 // - Sistema de audio
 // - Loja
-//         Perguntar o professor
-// -Como passar o text para o botao do prefab para atualizar a descrição da Conquista
-// - perguntar qual o melhor jeito de fazer a barrinha de nitro descer
 
 public class GameManager : MonoBehaviour
 {
     [Header("General Settings")]
-    private int coins = 0;
-    //private List<string> save = new List<string>();
-    //private string caminhoSalvar;
+
+    public List<GameObject> player= new List<GameObject>();
+    private int qualPlayer = 0, lastPlayer = 0;
+    public int QualPlayer { set { qualPlayer = value; } get { return qualPlayer; } }
+
+    private int coins;
+    public List<Informacoes> info;
+
+    private string caminhoSalvar;
 
     [Header("Move Tittles")]
 
@@ -50,29 +53,40 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private static int points = 0;
+    private static int points;
     public int GetPoints { get { return points; } }
 
 
     public void Awake()
     {
+        _instance = this;
         Time.timeScale = 0;
         points = 0;
-        _instance = this;
         currentNitro = 30;
-        speed = 1f;
+        speed = 1.5f;
         speedVariation = 0.03f;
+
     }
     private void Start()
     {
-        //caminhoSalvar = Application.persistentDataPath + "/Informacoes.json";
-        //
-        //save[0] = coins.ToString();
+        caminhoSalvar = Application.persistentDataPath + "/Informacoes.json";
+        CarregarInformacoes();
+        coins = info[0].coins;
+        player[qualPlayer].gameObject.SetActive(true);
+
+        UIConfig.Instance.AtualizaCoins(info[0].coins);
 
         InvokeRepeating("AddPoints", 0f, 0.1f);
         InvokeRepeating("AddSpeed", 0f, 1f);
     }
-    private void AddPoints()
+
+    public void AtualizaPlayer()
+    {
+        player[lastPlayer].gameObject.SetActive(false);
+        player[qualPlayer].gameObject.SetActive(true);
+        lastPlayer = qualPlayer;
+    }
+    public void AddPoints()
     {
         if (speed < 1)
             points++;
@@ -161,35 +175,75 @@ public class GameManager : MonoBehaviour
     public void Derrota()
     {
         ConferirConquistas();
+        GerenciadorDeConquistas.Instance.SalvarConquistas();
         Time.timeScale = 0;
         UIConfig.Instance.derrota.SetActive(true);
     }
     public void ConferirConquistas()
     {
-        //GerenciadorDeConquistas.Instance.ConquistaInderrubavel();
+        GerenciadorDeConquistas.Instance.ValidarConquistaInderrubavel();
+        GerenciadorDeConquistas.Instance.ValidarConquistaVontadeInabalavel();
     }
 
     public void AddCoin(int c)
     {
         coins += c;
-        //save[0] = coins.ToString();
+        UIConfig.Instance.AtualizaCoins(coins);
+        SalvaCoins();
+        StoreConfig.Instance.ConfereComprar();
+        SalvarInformacoes();
     }
-    //[ContextMenu("Salvar Informacoes")]
-    //public void SalvarInformacoes()
-    //{
-    //    string json = JsonHelper.ToJson(save.ToArray());
-    //    File.WriteAllText(caminhoSalvar, json);
-    //}
-    //
-    //[ContextMenu("Carregar informacoes")]
-    //public void CarregarInformacoes()
-    //{
-    //    string jsonSalvo = File.ReadAllText(caminhoSalvar);
-    //    string[] info = JsonHelper.FromJson<string>(jsonSalvo);
-    //    for(int i = 0; i < info.Length; i++)
-    //    {
-    //        coins = int.Parse(info[i]);
-    //    }
-    //}
+    public void DiminuiCoin(int c)
+    {
+        coins -= c;
+        UIConfig.Instance.AtualizaCoins(coins);
+        SalvaCoins();
+        SalvarInformacoes();
+    }
+    public void SalvaCoins()
+    {
+        info[0].coins = coins;
+    }
 
+    public void ContaPartidas()
+    {
+        info[0].partidas++;
+        SalvarInformacoes();
+    }
+
+    [ContextMenu("Salvar Informacoes")]
+    public void SalvarInformacoes()
+    {
+        string json = JsonHelper.ToJson(info.ToArray());
+        File.WriteAllText(caminhoSalvar, json);
+    }
+    
+    [ContextMenu("Carregar informacoes")]
+    public void CarregarInformacoes()
+    {
+        if (File.Exists(caminhoSalvar))
+        {
+            string jsonSalvo = File.ReadAllText(caminhoSalvar);
+            Informacoes[] infoConteiner = JsonHelper.FromJson<Informacoes>(jsonSalvo);
+
+            for (int i = 0; i < infoConteiner.Length; i++)
+            {
+                info[0].coins = infoConteiner[0].coins;
+                info[0].pneuComprado = infoConteiner[0].pneuComprado;
+            }
+        }
+    }
+    public void Teste(int i)
+    {
+        points += i;
+
+        UIConfig.Instance.AtualizaPontos();
+    }
+}
+[System.Serializable]
+public class Informacoes
+{
+    public int coins;
+    public List<int> pneuComprado = new List<int>();
+    public int partidas;
 }
