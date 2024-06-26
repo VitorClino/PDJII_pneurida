@@ -20,6 +20,8 @@ public class GerenciadorDeConquistas : MonoBehaviour
     
     public List<Conquistas> conquistas;
     string caminhoSalvar;
+
+    private string descricao;
     
     private void Awake()
     {
@@ -42,32 +44,33 @@ public class GerenciadorDeConquistas : MonoBehaviour
                     break;
                 case 1:
                     GameManager.Instance.AddCoin(50);
-                    conquistas[0].descConquista = "Percorra 4000 pontos para evoluir a conquista";
                     conquistas[0].data = System.DateTime.Now.ToString(" dd/ MM / yyyy");
                     conquistas[0].conquistaAtivada = false;
+                    descricao = "Percorra 4000 pontos para evoluir a conquista";
                     Debug.Log("Conquista Coletada");
                     break;
                 case 2:
                     GameManager.Instance.AddCoin(100); 
                     conquistas[0].nivel = 3;
-                    conquistas[0].descConquista = "Percorra 6000 pontos para evoluir a conquista";
                     conquistas[0].data = System.DateTime.Now.ToString(" dd/ MM / yyyy");
                     conquistas[0].conquistaAtivada = false;
+                    descricao = "Percorra 6000 pontos para evoluir a conquista";
                     Debug.Log("Conquista Coletada");
                     break;
                 case 3:
                     GameManager.Instance.AddCoin(200);
                     conquistas[0].nivel = 4;
-                    conquistas[0].descConquista = "voce chegou no ultimo nivel da conquista";
                     conquistas[0].data = System.DateTime.Now.ToString(" dd/ MM / yyyy");
                     conquistas[0].conquistaAtivada = false;
+                    descricao = "voce chegou no ultimo nivel da conquista";
                     Debug.Log("Conquista Coletada");
                     break;
             }
+            conquistas[0].descConquista = descricao;
+            //SalvarConquistas();
             PainelDeConquista.Instance.AtualizarPainel();
         }
         else { Debug.Log("Conquista nao esta ativa"); }
-
     }
     public void ValidarConquistaInderrubavel()
     {
@@ -87,33 +90,38 @@ public class GerenciadorDeConquistas : MonoBehaviour
             conquistas[0].nivel = 3;
         }
     }
-
     public void ConquistaVontadeInabalavel()
     {
         if (conquistas[1].conquistaAtivada)
         {
             if (GameManager.Instance.info[0].partidas >= 50 && conquistas[1].nivel == 1)
             {
-                conquistas[0].descConquista = "play 100 matches to unlock this achievement";
+                descricao = "play 100 matches to unlock this achievement";
                 conquistas[0].data = System.DateTime.Now.ToString(" dd/ MM / yyyy");
                 conquistas[0].conquistaAtivada = false;
                 Debug.Log("Conquista Coletada");
             }
             else if (GameManager.Instance.info[0].partidas >= 100 && conquistas[1].nivel == 2)
             {
-                conquistas[0].descConquista = "play 200 matches to unlock this achievement";
+                descricao = "play 200 matches to unlock this achievement";
                 conquistas[0].data = System.DateTime.Now.ToString(" dd/ MM / yyyy");
                 conquistas[0].conquistaAtivada = false;
                 Debug.Log("Conquista Coletada");
             }
             else if (GameManager.Instance.info[0].partidas >= 150 && conquistas[1].nivel == 3)
             {
-                conquistas[0].descConquista = "You have reached the last level of this achievement";
+                descricao = "You have reached the last level of this achievement";
                 conquistas[0].data = System.DateTime.Now.ToString(" dd/ MM / yyyy");
                 conquistas[0].conquistaAtivada = false;
                 Debug.Log("Conquista Coletada");
             }
+            conquistas[1].descConquista = descricao;
+            PainelDeConquista.Instance.AtualizarPainel();
         }
+    }
+    public void SalvaDescricacaoConquista(int i)
+    {
+        conquistas[i].descConquista = descricao;
     }
     public void ValidarConquistaVontadeInabalavel()
     {
@@ -155,6 +163,7 @@ public class GerenciadorDeConquistas : MonoBehaviour
                 conquistas[i].nivel = conquistasContainer[i].nivel;
                 conquistas[i].data = conquistasContainer[i].data;
                 conquistas[i].conquistaAtivada = conquistasContainer[i].conquistaAtivada;
+                conquistas[i].descConquista = conquistasContainer[i].descConquista;
             }
         }
     }
@@ -171,23 +180,4 @@ public class Conquistas
     public bool coletavel = false;
     public int codIcone;
     public string descConquista;
-        
-    public int Colect()
-    {
-        conquistaAtivada = false;
-        switch (nivel)
-        {
-            case 1:
-                return 50;
-                break;
-            case 2:
-                return 100;
-                break;
-            case 3:
-                return 200;
-                break;
-            
-        }
-        return 0;
-    }
 }

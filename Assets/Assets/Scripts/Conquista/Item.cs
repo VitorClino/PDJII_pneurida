@@ -35,9 +35,5 @@ public class Item : MonoBehaviour
         GerenciadorDeConquistas.Instance.ConquistaVontadeInabalavel();
 
     }
-    public void SalvarMagia()
-    {
-        GerenciadorDeConquistas.Instance.SalvarConquistas();
-    }
     
 }

@@ -7611,6 +7611,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1831853062}
+        m_TargetAssemblyTypeName: StoreConfig, Assembly-CSharp
+        m_MethodName: ConfereComprar
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1154320026
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10640,7 +10652,7 @@ MonoBehaviour:
   - ID: 0
     nome: The Unstoppable
     nivel: 0
-    data: 20/20/2020
+    data: 
     conquistaAtivada: 0
     coletavel: 0
     codIcone: 0
@@ -10648,7 +10660,7 @@ MonoBehaviour:
   - ID: 1
     nome: unshakable will
     nivel: 0
-    data: 20/20/2020
+    data: 
     conquistaAtivada: 0
     coletavel: 0
     codIcone: 1
@@ -11132,6 +11144,18 @@ MonoBehaviour:
           m_StringArgument: Pneurida_Store
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1831853062}
+        m_TargetAssemblyTypeName: StoreConfig, Assembly-CSharp
+        m_MethodName: ConfereComprar
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1769344462
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11465,9 +11489,25 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7290472344715262237, guid: e8d366fb3ed375243a20f91c8b012f6b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7290472344715262237, guid: e8d366fb3ed375243a20f91c8b012f6b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7290472344715262237, guid: e8d366fb3ed375243a20f91c8b012f6b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7290472344715262237, guid: e8d366fb3ed375243a20f91c8b012f6b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7290472344715262237, guid: e8d366fb3ed375243a20f91c8b012f6b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1142878390}
     - target: {fileID: 7290472344715262237, guid: e8d366fb3ed375243a20f91c8b012f6b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -11477,6 +11517,18 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1649776701}
     - target: {fileID: 7290472344715262237, guid: e8d366fb3ed375243a20f91c8b012f6b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Target
+      value: 
+      objectReference: {fileID: 1649776701}
+    - target: {fileID: 7290472344715262237, guid: e8d366fb3ed375243a20f91c8b012f6b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7290472344715262237, guid: e8d366fb3ed375243a20f91c8b012f6b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: AtualizarTextoDsc
+      objectReference: {fileID: 0}
+    - target: {fileID: 7290472344715262237, guid: e8d366fb3ed375243a20f91c8b012f6b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: ColectConquistaInderrubavel
       objectReference: {fileID: 0}
@@ -11485,7 +11537,19 @@ PrefabInstance:
       value: SalvarConquistas
       objectReference: {fileID: 0}
     - target: {fileID: 7290472344715262237, guid: e8d366fb3ed375243a20f91c8b012f6b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
+      value: SalvarConquistas
+      objectReference: {fileID: 0}
+    - target: {fileID: 7290472344715262237, guid: e8d366fb3ed375243a20f91c8b012f6b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Item, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7290472344715262237, guid: e8d366fb3ed375243a20f91c8b012f6b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      value: GerenciadorDeConquistas, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7290472344715262237, guid: e8d366fb3ed375243a20f91c8b012f6b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
       value: GerenciadorDeConquistas, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 7290472344715262237, guid: e8d366fb3ed375243a20f91c8b012f6b, type: 3}
@@ -11493,7 +11557,23 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 60543629}
     - target: {fileID: 7290472344715262237, guid: e8d366fb3ed375243a20f91c8b012f6b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7290472344715262237, guid: e8d366fb3ed375243a20f91c8b012f6b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: TMPro.TMP_Text, Unity.TextMeshPro
+      objectReference: {fileID: 0}
+    - target: {fileID: 7290472344715262237, guid: e8d366fb3ed375243a20f91c8b012f6b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 7290472344715262237, guid: e8d366fb3ed375243a20f91c8b012f6b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 7290472344715262237, guid: e8d366fb3ed375243a20f91c8b012f6b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 8532818271849671399, guid: e8d366fb3ed375243a20f91c8b012f6b, type: 3}
@@ -11833,7 +11913,7 @@ MonoBehaviour:
     bloquado: 1
     selecionado: {fileID: 494773509}
   - tire: {fileID: 172372213}
-    preco: 100
+    preco: 150
     bloquado: 1
     selecionado: {fileID: 112286232}
   panel_unlock: {fileID: 1208304597}
@@ -13126,7 +13206,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteConquistas:
   - {fileID: 1660008883, guid: ea7b5f85a3bf78d40a80a25f7ecfc9ca, type: 3}
-  - {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2044460681, guid: ea7b5f85a3bf78d40a80a25f7ecfc9ca, type: 3}
   itensPainel:
   - {fileID: 1142878390}
   - {fileID: 2082220986}

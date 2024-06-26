@@ -98,8 +98,10 @@ public class UIConfig : MonoBehaviour
     }
     public void RecuperaVida()
     {
-        vida--;
-        UIvida[vida].gameObject.SetActive(true);
+        if (vida != 0)
+        {
+            vida--;
+            UIvida[vida].gameObject.SetActive(true);
+        }
     }
-
 }
